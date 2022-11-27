@@ -1,0 +1,189 @@
+---
+title: Projecte d'R per ESTA
+author: "Ixent Cornella"
+date: "24/12/2021"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+## **Introducció**
+
+Aquest projecte implementat en R, té com a objectiu demostrar coneixement adquirit durant el curs sobre estadística descrpitiva i infèrencia
+ estadística, en diferents problemes, i en general, resoldre problemes creats a partir de dades inventades.
+
+Les dades que s'utilizaran pels problemes provenen de un fitxer excel, que mostra comandes sobre menjar. Es faran analisis sobre les dades, per comprovar les seves propietats estadistiques. 
+
+### Obtenim les dades per la practica:
+
+Primer ens calen alguns paquets per poder dexifrar el fitxer excel en R
+```{r obtenirPaquet}
+  library(XLConnect)
+  
+```
+Aquest paquet ens servira per poder tractar el fitxer excel en format de data frame.
+
+La comanda *readWorksheetFromFile* llegeix una fitxa de excel i la transforma en un dataframe de R. 
+```{r obtenirDades}
+  data = readWorksheetFromFile("sampledatafoodsales.xlsx", sheet = 2)
+
+```
+
+
+
+### Contingut de les dades
+Abans de començar, revisem una mica les dades del data frame *data* que hem creat:
+```{r}
+names(data) # retorna el nom de les variables
+```
+Podem observar com tenim varies columnes. La primera indica la data en la que es va fer la comanda, la segona la regió, la ciutat, la categoria a la que pertany el producte, el producte ensí, la quantitat que s'ha demanat d'aquest, el preu per unitat i el preu total. 
+És bastant segur que no utilitzarem columnes com la de la data en la que es va fer la comanda, ja que ens interesen altres tipus de variables, com poden ser les numeriques o de tipus *string*. 
+Anem a veure el tipus de variables:
+```{r}
+sapply(data,class) # retorna el nom de les variables
+```
+
+
+<div style="page-break-after: always;"></div>
+
+# **Primera tasca**: Observar si hi ha una distribucio normal entre els preus de cada producte (Test de normalitat).
+
+```{r p1}
+preu<-data$UnitPrice
+ hist(preu, breaks = seq(1.3, 3.5, by= 0.1))
+```
+
+Es pot veure clarament al histograma que no hi ha cap tipus d'indici per pensar que els preus estan distribuits de forma normal.
+Tot i aixo, ens assegurarem amb les funcions d'R
+```{r}
+qqnorm(preu)
+qqline(preu)
+```
+Ara es pot veure clarament com els valors no segueixen cap tipus de relacio normal, si aixi fos, veuriem els puntets negres seguint la linia al grafic.
+
+shapiro.test(preu)
+La H0 del test és que els x estan distribuïts segons una normal. Com que p << 0.02, hem de rebutjar H0 i concloure que les dades no corresponen a una normal.
+
+ 
+ 
+ 
+ 
+ <div style="page-break-after: always;"></div>
+# **Segona Tasca**: Veure com a partir de dades de variables independents, es pot obtenir dades distribuides segons una normal.
+
+El TCL diu que si sumem les dades corresponents a moltes variables independents, obtenim unes dades que estan aproximadament distribuïdes segons una normal. Podem comprovar-ho amb alguna variable del fitxer excel obtingut.
+
+```{r p2}
+p = mean(preu-2) #per tenir un valor entre 0 i 1
+n = as.integer(mean(data$TotalPrice))
+mu = n*p
+sigma = sqrt(n*p*(1-p))
+h=1/(sigma*sqrt(2*pi)) #h es el valor maxim de la funció de densitat de la normal
+
+```
+
+Dibuixem la funcio de densitat de la binomial.
+
+```{r}
+
+k=0:n
+f<-dbinom(k,n,p) #funcio de densitat (d)
+plot(k,f,type='h', col="blue",ylim=0:1.1*h)
+#text
+tt=sprintf("Funcio de densitat\n d'una Bi(%d, %1.1f), amb valors del fitxer 'foodsales.xlsx'",n,p)
+text(x=0.75*n, y=0.65*h, labels=tt, cex=1, col="blue")
+#fi text
+x=seq(mu-4*sigma, mu+4*sigma, by=0.01*sigma)
+f<-dnorm(x,mu,sigma)
+lines(x,f,type="l", col="red")
+#text
+tt=sprintf("Funcio de densitat\n d'una N(%1.1f, %1.1f)",mu,sigma)
+text(x=0.65*n, y=0.85*h, labels=tt, cex=1, col="red")
+```
+
+Tenim np = 27, n(1 − p) = 108, Valors molt per sobre de 5 (si estan per sobre donen una bona aproximacio).
+
+
+
+Finalment, podem comprovar aquests valors del preu total de cada comanda:
+```{r}
+summary(data$TotalPrice)
+```
+I mirar-ho graficament per veure que molts valors d'aquest preu total estan agrupats al voltant de la mediana, amb molts valors atipics.
+```{r}
+boxplot(data$TotalPrice)
+
+```
+
+
+
+
+<div style="page-break-after: always;"></div>
+# **Tercera Tasca**: Esbrinar, per cada tipus, l'index de quantitat d'aquest.
+L'index de quantitat ens l'inventem. Aquest estarà representat de la següent forma: el total de productes i quantes unitats d'aquests productes es demanen per comanda. Quants més es demanen (en mitjana), més popular és el producte (és a dir, es demanen més quantitats d'aquests producte per comanda. Normalment els productes petits com ara galetes acostumen a ser més demanats en comanda. Veurem si és cert)
+
+Primer, ens cal esbrinar la freqüencia de cada producte. Es pot fer amb les següents comandes:
+
+```{r}
+freq = table(data$Product)
+freq_rel = prop.table(freq)
+round(freq_rel*100,digits=2)
+labs <- names(table(data$Product))
+par(mar=c(7,4,2,2)) #Ajustem marges
+barplot(height=freq_rel, col="#80B1FC", names.arg=labs, las=2)
+```
+Com es pot veure, es demanen moltes carrotes i pocs platàns. Això no influeix l'index de quantitat, ja que volem esbrinar quants d'aquests productes es demanen per comanda.
+
+Ara ens cal trobar el total de cada producte que s'ha demanat en totes les comandes
+
+```{r}
+X = c(0,0,0,0,0,0,0,0,0)
+
+#recorrem tot el dataframe i anem sumant les quantitats de les comandes en funció del producte
+
+for(i in 1:nrow(data)){
+  if(data[i,"Product"] == "Arrowroot"){
+    X[1] = X[1] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Banana"){
+    X[2] = X[2] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Bran"){
+    X[3] = X[3] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Carrot"){
+    X[4] = X[4] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Chocolate Chip"){
+    X[5] = X[5] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Oatmeal Raisin"){
+    X[6] = X[6] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Potato Chips"){
+    X[7] = X[7] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Pretzels"){
+    X[8] = X[8] + data[i,"Quantity"]
+  }
+  else if(data[i,"Product"] == "Whole Wheat"){
+    X[9] = X[9] + data[i,"Quantity"]
+  }
+}
+index = X * freq_rel
+#Frequencia relativa
+freq_rel
+#Index de productes
+index
+```
+*index* representa, per cada producte, el total de unitats comandades d'aquest, multiplicat per la frequencia en la que s'ordenen les comandes en funció del producte.
+Si *index* és un valor molt alt, vol dir que s'han fet comandes on s'han ordenat molts d'aquests productes, com pot ser per *carrota*, el seu index és de gairebé 1100, cosa que correspon amb la freqüencia absoluta de les carrotes, que és la més alta. Com es pot observar, quan més baixa és la freqüencia absoluta d'un producte, més baix acostuma a ser l'índex. Podem veure excepcions, com ara *Whole Wheat* i *Bran*, que tenen una frequencia absoluta similar, però el index de *Bran* és més alt que el de *Whole Wheat*, cosa que ens indica que per s'ha demanat més quantitat de *Bran* que de *Whole Wheat* en totes les comandes.
+
+
+<div style="page-break-after: always;"></div>
+
+# **Conclusió**
+
+En aquest projecte s'han usat els coneixements adquirits al labortari d'Estadística, per intentar demostrar-los. S'han fet tècniques tant d'inferència estadística (test de normalitat, TCL) com d'estadistica descrpitiva. També cal destacar que per obtenir les dades s'ha utlitzat una funció no apresa a classe, amb una llibreria que permet transformar fitxers excel en format de data frame de R.
+

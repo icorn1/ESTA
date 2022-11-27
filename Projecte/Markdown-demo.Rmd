@@ -1,0 +1,86 @@
+---
+title: Projecte d'R per ESTA
+author: "Ixent Cornella"
+date: "24/12/2021"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+### A continuació hi ha diversos  exemples. 
+#### Un bloc de codi  està delimitat per tres accents oberts i {r} al començament, i per tres accents més oberts per tancar-lo. Es pot generar directament amb CTRL+ALT+I.
+#### A {r} s'hi poden posar diverses opcions, com per exemple un nom de bloc, o si els resultats o el codi han d'aparèixer a l'informe.
+#### El bloc de codi on us trobeu es pot executar amb CTRL+ENTER. El menú de RStudio ofereix altres possibilitats. 
+#### També es poden crear documents interactius (**Shiny**), però no ho discutim aquí.
+#### Consulteu el resum **rmarkdown-2.0** per veure totes les opcions de marcatge.
+
+#### En acabar heu de executar **Knit** (l'heu d'instal.lar a RStudio si no el teniu) per generar el HTML, PDF o Word.
+#### Per generar el PDF cal tenir instal.lat LaTeX (programari extern) en el vostre sistema.
+
+
+
+# Exemple 1. Codi elemental
+
+```{r}
+3+4
+```
+
+
+
+# Exemple 2. Dades de **rivers**
+#### `echo=F` fa que el codi no apareixi en l'informe.
+#### `rius` és el nom del bloc.
+####  Dins d'un bloc de codi es poden posar comentaris.
+```{r rius, echo=F}
+rivers
+rivers[77]
+rivers[23:28]
+# Elements de valor més gran que 200
+rivers[rivers>200]
+```
+ 
+ 
+# Exemple 3. Funcions
+
+ 
+```{r}
+# definim la funció
+myfunc=function(arg1,arg2,arg3)
+{
+  x=sin(arg1)
+  y=arg2^3
+  return(x*y+arg3)
+}
+
+# la cridem
+myfunc(1,2,3)
+
+```
+
+# Exemple 4. Gràfics
+## Generem unes dades. Fixem el seed per a que sigui reproduible.
+```{r}
+n=1000
+set.seed(1)
+x=rnorm(n)+rt(n,10)
+
+```
+## Analitzem la seva normalitat.
+### Utilitzem un histograma i un *qq*.
+```{r}
+min=quantile(x,0)
+max=quantile(x,1)
+d=(max-min)/ floor ( sqrt (n) )
+hist(x,breaks=seq(min,max,by=d))
+qqnorm(x)
+qqline(x)
+```
+
+### Apliquem també el **test de Shapiro-Wilk**.
+```{r}
+t=shapiro.test(x)
+pval=t$p.value
+```
+#### Tots els test aplicats indiquen que podem acceptar que les dades estan distribuides segons una normal.
+

@@ -1,0 +1,5 @@
+TEMES ESTA
+
+Esbrinar si un estimador té biaix
+Error quadràtic en mitjana d'estimadors EQM
+Interval de confiança

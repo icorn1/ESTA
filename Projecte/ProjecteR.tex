@@ -1,0 +1,470 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Projecte d'R per ESTA},
+  pdfauthor={Ixent Cornella},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Projecte d'R per ESTA}
+\author{Ixent Cornella}
+\date{24/12/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{projecte-destadistica}{%
+\section{PROJECTE D'ESTADISTICA}\label{projecte-destadistica}}
+
+\#\#\#Introducció
+
+Aquest projecte implementat en R, té com a objectiu demostrar
+coneixement adquirit durant el curs sobre estadística descrpitiva i
+infèrencia estadística, en diferents problemes, i en general, resoldre
+problemes creats a partir de dades inventades.
+
+Les dades que s'utilizaran pels problemes provenen de un fitxer excel,
+que mostra comandes sobre menjar. Es faran analisis sobre les dades, per
+comprovar les seves propietats estadistiques.
+
+\hypertarget{obtenim-les-dades-per-la-practica}{%
+\subsection{Obtenim les dades per la
+practica:}\label{obtenim-les-dades-per-la-practica}}
+
+Primer ens calen alguns paquets per poder dexifrar el fitxer excel en R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \FunctionTok{library}\NormalTok{(XLConnect)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'XLConnect' was built under R version 4.1.2
+\end{verbatim}
+
+\begin{verbatim}
+## XLConnect 1.0.5 by Mirai Solutions GmbH [aut],
+##   Martin Studer [cre],
+##   The Apache Software Foundation [ctb, cph] (Apache POI),
+##   Graph Builder [ctb, cph] (Curvesapi Java library),
+##   Brett Woolridge [ctb, cph] (SparseBitSet Java library)
+\end{verbatim}
+
+\begin{verbatim}
+## https://mirai-solutions.ch
+## https://github.com/miraisolutions/xlconnect
+\end{verbatim}
+
+Aquest paquet ens servira per poder tractar el fitxer excel en format de
+data frame.
+
+La comanda readWorksheetFromFile llegeix una fitxa de excel i la
+transforma en un dataframe de R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  data }\OtherTok{=} \FunctionTok{readWorksheetFromFile}\NormalTok{(}\StringTok{"sampledatafoodsales.xlsx"}\NormalTok{, }\AttributeTok{sheet =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\#\#Contingut de les dades Abans de començar, revisem una mica les dades
+del data frame \emph{data} que hem creat:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(data) }\CommentTok{\# retorna el nom de les variables}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "OrderDate"  "Region"     "City"       "Category"   "Product"   
+## [6] "Quantity"   "UnitPrice"  "TotalPrice"
+\end{verbatim}
+
+Podem observar com tenim varies columnes. La primera indica la data en
+la que es va fer la comanda, la segona la regió, la ciutat, la categoria
+a la que pertany el producte, el producte ensí, la quantitat que s'ha
+demanat d'aquest, el preu per unitat i el preu total. És bastant segur
+que no utilitzarem columnes com la de la data en la que es va fer la
+comanda, ja que ens interesen altres tipus de variables, com poden ser
+les numeriques o de tipus \emph{string}. Anem a veure el tipus de
+variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sapply}\NormalTok{(data,class) }\CommentTok{\# retorna el nom de les variables}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $OrderDate
+## [1] "POSIXct" "POSIXt" 
+## 
+## $Region
+## [1] "character"
+## 
+## $City
+## [1] "character"
+## 
+## $Category
+## [1] "character"
+## 
+## $Product
+## [1] "character"
+## 
+## $Quantity
+## [1] "numeric"
+## 
+## $UnitPrice
+## [1] "numeric"
+## 
+## $TotalPrice
+## [1] "numeric"
+\end{verbatim}
+
+\hypertarget{primera-tasca-observar-si-hi-ha-una-distribucio-normal-entre-els-preus-de-cada-producte-test-de-normalitat.}{%
+\section{\texorpdfstring{\textbf{Primera tasca}: Observar si hi ha una
+distribucio normal entre els preus de cada producte (Test de
+normalitat).}{Primera tasca: Observar si hi ha una distribucio normal entre els preus de cada producte (Test de normalitat).}}\label{primera-tasca-observar-si-hi-ha-una-distribucio-normal-entre-els-preus-de-cada-producte-test-de-normalitat.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{preu}\OtherTok{\textless{}{-}}\NormalTok{data}\SpecialCharTok{$}\NormalTok{UnitPrice}
+ \FunctionTok{hist}\NormalTok{(preu, }\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{1.3}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\AttributeTok{by=} \FloatTok{0.1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProjecteR_files/figure-latex/p1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Es pot veure clarament al histograma que no hi ha cap tipus d\textquotesingle{}indici per pensar que els preus estan distribuits de forma normal.}
+\CommentTok{\# tot i aixo, ens assegurarem amb les funcions d\textquotesingle{}R}
+\FunctionTok{qqnorm}\NormalTok{(preu)}
+\FunctionTok{qqline}\NormalTok{(preu)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProjecteR_files/figure-latex/p1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Ara es pot veure clarament com els valors no segueixen cap tipus de relacio normal, si aixi fos, veuriem els puntets negres seguint la linia al grafic.}
+\FunctionTok{shapiro.test}\NormalTok{(preu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  preu
+## W = 0.76733, p-value < 2.2e-16
+\end{verbatim}
+
+La H0 del test és que els x estan distribuïts segons una normal. Com que
+p \textless\textless{} 0.02, hem de rebutjar H0 i concloure que les
+dades no corresponen a una normal.
+
+\hypertarget{segona-tasca-veure-com-a-partir-de-dades-de-variables-independents-es-pot-obtenir-dades-distribuides-segons-una-normal.}{%
+\section{Segona Tasca: Veure com a partir de dades de variables
+independents, es pot obtenir dades distribuides segons una
+normal.}\label{segona-tasca-veure-com-a-partir-de-dades-de-variables-independents-es-pot-obtenir-dades-distribuides-segons-una-normal.}}
+
+El TCL diu que si sumem les dades corresponents a moltes variables
+independents, obtenim unes dades que estan aproximadament distribuïdes
+segons una normal. Podem comprovar-ho amb alguna variable del fitxer
+excel obtingut.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{=} \FunctionTok{mean}\NormalTok{(preu}\DecValTok{{-}2}\NormalTok{) }\CommentTok{\#per tenir un valor entre 0 i 1}
+\NormalTok{n }\OtherTok{=} \FunctionTok{as.integer}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{TotalPrice))}
+\NormalTok{mu }\OtherTok{=}\NormalTok{ n}\SpecialCharTok{*}\NormalTok{p}
+\NormalTok{sigma }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(n}\SpecialCharTok{*}\NormalTok{p}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p))}
+\NormalTok{h}\OtherTok{=}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(sigma}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi)) }\CommentTok{\#h es el valor maxim de la funció de densitat de la normal}
+\end{Highlighting}
+\end{Shaded}
+
+Dibuixem la funcio de densitat de la binomial.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k}\OtherTok{=}\DecValTok{0}\SpecialCharTok{:}\NormalTok{n}
+\NormalTok{f}\OtherTok{\textless{}{-}}\FunctionTok{dbinom}\NormalTok{(k,n,p) }\CommentTok{\#funcio de densitat (d)}
+\FunctionTok{plot}\NormalTok{(k,f,}\AttributeTok{type=}\StringTok{\textquotesingle{}h\textquotesingle{}}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}\AttributeTok{ylim=}\DecValTok{0}\SpecialCharTok{:}\FloatTok{1.1}\SpecialCharTok{*}\NormalTok{h)}
+\CommentTok{\#text}
+\NormalTok{tt}\OtherTok{=}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Funcio de densitat}\SpecialCharTok{\textbackslash{}n}\StringTok{ d\textquotesingle{}una Bi(\%d, \%1.1f), amb valors del fitxer \textquotesingle{}foodsales.xlsx\textquotesingle{}"}\NormalTok{,n,p)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.75}\SpecialCharTok{*}\NormalTok{n, }\AttributeTok{y=}\FloatTok{0.65}\SpecialCharTok{*}\NormalTok{h, }\AttributeTok{labels=}\NormalTok{tt, }\AttributeTok{cex=}\DecValTok{1}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\CommentTok{\#fi text}
+\NormalTok{x}\OtherTok{=}\FunctionTok{seq}\NormalTok{(mu}\DecValTok{{-}4}\SpecialCharTok{*}\NormalTok{sigma, mu}\SpecialCharTok{+}\DecValTok{4}\SpecialCharTok{*}\NormalTok{sigma, }\AttributeTok{by=}\FloatTok{0.01}\SpecialCharTok{*}\NormalTok{sigma)}
+\NormalTok{f}\OtherTok{\textless{}{-}}\FunctionTok{dnorm}\NormalTok{(x,mu,sigma)}
+\FunctionTok{lines}\NormalTok{(x,f,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\CommentTok{\#text}
+\NormalTok{tt}\OtherTok{=}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Funcio de densitat}\SpecialCharTok{\textbackslash{}n}\StringTok{ d\textquotesingle{}una N(\%1.1f, \%1.1f)"}\NormalTok{,mu,sigma)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.65}\SpecialCharTok{*}\NormalTok{n, }\AttributeTok{y=}\FloatTok{0.85}\SpecialCharTok{*}\NormalTok{h, }\AttributeTok{labels=}\NormalTok{tt, }\AttributeTok{cex=}\DecValTok{1}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProjecteR_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+Tenim np = 27, n(1 − p) = 108, Valors molt per sobre de 5 (si estan per
+sobre donen una bona aproximacio).
+
+Finalment, podem comprovar aquests valors del preu total de cada
+comanda:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{TotalPrice)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   33.60   72.57  102.75  136.58  159.30  817.92
+\end{verbatim}
+
+I mirar-ho graficament per veure que molts valors d'aquest preu total
+estan agrupats al voltant de la mediana, amb molts valors atipics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{TotalPrice)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProjecteR_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\hypertarget{tercera-tasca-esbrinar-per-cada-tipus-lindex-de-quantitat-daquest.}{%
+\section{Tercera Tasca: Esbrinar, per cada tipus, l'index de quantitat
+d'aquest.}\label{tercera-tasca-esbrinar-per-cada-tipus-lindex-de-quantitat-daquest.}}
+
+L'index de quantitat ens l'inventem. Aquest estarà representat de la
+següent forma: el total de productes i quantes unitats d'aquests
+productes es demanen per comanda. Quants més es demanen (en mitjana),
+més popular és el producte (és a dir, es demanen més quantitats
+d'aquests producte per comanda. Normalment els productes petits com ara
+galetes acostumen a ser més demanats en comanda. Veurem si és cert)
+
+Primer, ens cal esbrinar la freqüencia de cada producte. Es pot fer amb
+les següents comandes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freq }\OtherTok{=} \FunctionTok{table}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Product)}
+\NormalTok{freq\_rel }\OtherTok{=} \FunctionTok{prop.table}\NormalTok{(freq)}
+\FunctionTok{round}\NormalTok{(freq\_rel}\SpecialCharTok{*}\DecValTok{100}\NormalTok{,}\AttributeTok{digits=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Arrowroot         Banana           Bran         Carrot Chocolate Chip 
+##          12.70           1.23          11.07          26.23          13.52 
+## Oatmeal Raisin   Potato Chips       Pretzels    Whole Wheat 
+##          12.70           9.02           2.87          10.66
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{labs }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(}\FunctionTok{table}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Product))}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\CommentTok{\#Ajustem marges}
+\FunctionTok{barplot}\NormalTok{(}\AttributeTok{height=}\NormalTok{freq\_rel, }\AttributeTok{col=}\StringTok{"\#80B1FC"}\NormalTok{, }\AttributeTok{names.arg=}\NormalTok{labs, }\AttributeTok{las=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ProjecteR_files/figure-latex/unnamed-chunk-6-1.pdf} Com
+es pot veure, es demanen moltes carrotes i pocs platàns. Això no
+influeix l'index de quantitat, ja que volem esbrinar quants d'aquests
+productes es demanen per comanda.
+
+Ara ens cal trobar el total de cada producte que s'ha demanat en totes
+les comandes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\#recorrem tot el dataframe i anem sumant les quantitats de les comandes en funció del producte}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(data))\{}
+  \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Arrowroot"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{1}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Banana"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{2}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Bran"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{3}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Carrot"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{4}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{4}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Chocolate Chip"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{5}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{5}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Oatmeal Raisin"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{6}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{6}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Potato Chips"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{7}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{7}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Pretzels"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{8}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{8}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(data[i,}\StringTok{"Product"}\NormalTok{] }\SpecialCharTok{==} \StringTok{"Whole Wheat"}\NormalTok{)\{}
+\NormalTok{    X[}\DecValTok{9}\NormalTok{] }\OtherTok{=}\NormalTok{ X[}\DecValTok{9}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ data[i,}\StringTok{"Quantity"}\NormalTok{]}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{index }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{*}\NormalTok{ freq\_rel}
+\CommentTok{\#Frequencia relativa}
+\NormalTok{freq\_rel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Arrowroot         Banana           Bran         Carrot Chocolate Chip 
+##     0.12704918     0.01229508     0.11065574     0.26229508     0.13524590 
+## Oatmeal Raisin   Potato Chips       Pretzels    Whole Wheat 
+##     0.12704918     0.09016393     0.02868852     0.10655738
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Index de productes}
+\NormalTok{index}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Arrowroot         Banana           Bran         Carrot Chocolate Chip 
+##    310.6352459      0.9713115    174.2827869   1098.2295082    330.6762295 
+## Oatmeal Raisin   Potato Chips       Pretzels    Whole Wheat 
+##    327.0245902     89.6229508      5.3360656    101.9754098
+\end{verbatim}
+
+\emph{index} representa, per cada producte, el total de unitats
+comandades d'aquest, multiplicat per la frequencia en la que s'ordenen
+les comandes en funció del producte. Si \emph{index} és un valor molt
+alt, vol dir que s'han fet comandes on s'han ordenat molts d'aquests
+productes, com pot ser per \emph{carrota}, el seu index és de gairebé
+1100, cosa que correspon amb la freqüencia absoluta de les carrotes, que
+és la més alta. Com es pot observar, quan més baixa és la freqüencia
+absoluta d'un producte, més baix acostuma a ser l'índex. Podem veure
+excepcions, com ara \emph{Whole Wheat} i \emph{Bran}, que tenen una
+frequencia absoluta similar, però el index de \emph{Bran} és més alt que
+el de \emph{Whole Wheat}, cosa que ens indica que per s'ha demanat més
+quantitat de \emph{Bran} que de \emph{Whole Wheat} en totes les
+comandes.
+
+\#Conclusió
+
+En aquest projecte s'han usat els coneixements adquirits al labortari
+d'Estadística, per intentar demostrar-los. S'han fet tècniques tant
+d'inferència estadística (test de normalitat, TCL) com d'estadistica
+descrpitiva. També cal destacar que per obtenir les dades s'ha utlitzat
+una funció no apresa a classe, amb una llibreria que permet transformar
+fitxers excel en format de data frame de R.
+
+\end{document}
